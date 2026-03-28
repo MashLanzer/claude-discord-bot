@@ -15,6 +15,9 @@
     "node": "24.13.0",
     "npm": "11.6.2"
   },
+  "overrides": {
+  "node-gyp": "10.3.1"
+},
   "keywords": [
     "discord",
     "claude",
