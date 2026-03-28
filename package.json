@@ -11,6 +11,10 @@
     "pm2:restart": "pm2 restart claude-bot",
     "pm2:logs": "pm2 logs claude-bot"
   },
+  "engines": {
+    "node": "24.13.0",
+    "npm": "11.6.2"
+  },
   "keywords": [
     "discord",
     "claude",
