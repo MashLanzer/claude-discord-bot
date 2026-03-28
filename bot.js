@@ -158,7 +158,7 @@ client.on('messageCreate', async (message) => {
                 }
             }
             if (savedFiles.length > 0) {
-                const filesContext = `\n\nAnaliza los siguientes archivos locales agruegados manualmente al contexto:\n` + savedFiles.map(f => `"${f}"`).join('\n');
+                const filesContext = `\n\nAnaliza los siguientes archivos locales agregados manualmente al contexto:\n` + savedFiles.map(f => `"${f}"`).join('\n');
                 finalInputText = finalInputText + filesContext;
                 await message.react('📎').catch(() => {});
             }
@@ -415,7 +415,7 @@ client.on('messageCreate', async (message) => {
         }
 
         // --- 📜 MEJORA 3: Exportador Raw (!export) ---
-        if (text.toLowerCase() === '!export') {
+        if (textLower === '!export') {
             if (!session) return message.channel.send('❌ No hay sesión activa para exportar.');
             let fullText = '';
             for (let i = 0; i < session.term.buffer.active.length; i++) {
@@ -431,7 +431,7 @@ client.on('messageCreate', async (message) => {
         }
 
         // --- 🔌 MEJORA 5: Atajo MCP Menu (!mcp) ---
-        if (text.toLowerCase() === '!mcp') {
+        if (textLower === '!mcp') {
             if (session) {
                 session.ptyProcess.write('/mcp\r');
                 await message.channel.send('🔌 **Invocando administrador de MCP de Claude Code.** (Usa los botones/flechas para navegar en el menú que aparecerá).');
@@ -442,7 +442,7 @@ client.on('messageCreate', async (message) => {
         }
 
         // Comando para forzar voz independiente de nota de audio
-        if (text.toLowerCase() === '!voice') {
+        if (textLower === '!voice') {
             if (session) {
                 session.replyWithVoice = true;
                 await message.react('🔊');
@@ -649,7 +649,7 @@ client.on('interactionCreate', async (interaction) => {
 });
 
 // Cuando el bot esté listo, inyectamos los Slash Commands
-client.once('clientReady', async () => {
+client.once('ready', async () => {
     console.log(`✅ Bot conectado e iniciando Fase 4 (Agente Autónomo) como ${client.user.tag}`);
     try {
         const rest = new REST({ version: '10' }).setToken(BOT_TOKEN);
